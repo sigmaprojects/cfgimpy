@@ -1,0 +1,14 @@
+# private gateway instance config
+*.cfg
+
+# memory & snapshots
+snapshots/**
+GimpyMemory.json
+
+# eclipse settings
+.settings/
+.project
+
+# personal stuffs
+commands/Torrent.cfc
+restart.cfm
