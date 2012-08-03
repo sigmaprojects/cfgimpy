@@ -12,3 +12,4 @@ GimpyMemory.json
 # personal stuffs
 commands/Torrent.cfc
 restart.cfm
+debug.cfm
