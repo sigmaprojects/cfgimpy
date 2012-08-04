@@ -1,5 +1,8 @@
 <cfdump var="#Application#">
 
+<!---
+<cfdump var="#Application#">
+
 <cfset gH = getGatewayHelper('Gimpy') />
 
 <cfdump var="#gh#">
@@ -9,4 +12,4 @@
 <cfdump var="#gh.getBuddyList()#" />
 
 <cfdump var="#happen#" />
-
+--->
