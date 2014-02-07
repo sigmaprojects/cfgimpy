@@ -1,5 +1,12 @@
 # private gateway instance config
 *.cfg
+WEB-INF/
+!WEB-INF/railo/components/railo/extension/gateway/XMPPClientGateway.cfc
+!WEB-INF/railo/context/admin/gdriver/XMPPClient.cfc
+!WEB-INF/railo/lib/smack-3.4.0.jar
+!WEB-INF/railo/lib/smack-config.xml
+!WEB-INF/railo/lib/smackx-3.4.0.jar
+
 
 # memory & snapshots
 snapshots/**
