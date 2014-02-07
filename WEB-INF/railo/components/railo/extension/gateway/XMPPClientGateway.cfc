@@ -125,34 +125,9 @@ component {
 	}
 
 	public void function SendMessage(Struct data) {
-
-		/*
-		var MessageListener = createObject('java','org.jivesoftware.smack.MessageListener');
-		var chatmanager = variables.connection.getChatManager();
-		var newChat = chatmanager.createChat( arguments.data.buddyid, MessageListener );
-		
-		var Message = createObject('java','org.jivesoftware.smack.Message');
-		Message.setBody( arguments.message );
-		//message.setProperty("favoriteColor", "red");
-		newChat.sendMessage(Message);
-		*/
-		
 		var Packet = createObject('java','org.jivesoftware.smack.packet.Message').init( arguments.data.buddyid );
 		Packet.setBody( arguments.data.message );
 		variables.connection.sendPacket( Packet );
-		
-		/*
-		var newChat = chatmanager.createChat(data.buddyid, new MessageListener() {
-			public void processMessage(Chat chat, Message message) {
-				System.out.println("Received message: " + message);
-			}
-		});
-		*/
-		
-		/*
-		savecontent variable="d" { writedump(var=arguments.data,top=3,format="text"); }
-		writelog(text=d, type="information", file="XMPPClientGateway");
-		*/
 	}
 
 }
