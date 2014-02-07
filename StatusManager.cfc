@@ -1,8 +1,10 @@
 ﻿component output=false {
 
 	public StatusManager function init(required string GatewayID) {
+		/*
 		variables.helper = getGatewayHelper(Arguments.GatewayID);
 		variables.quotes = GetGirQuotes();
+		*/
 		return This;
 	}
 	public string function GetHelper() {
@@ -10,6 +12,7 @@
 	}
 
 	public void function ChangeStatus(numeric quote) {
+		return;
 		if(StructKeyExists(arguments,'quote') && IsNumeric(arguments.quote)) {
 			GetHelper().setStatus('ONLINE', variables.quotes[arguments.quote] );
 		} else {

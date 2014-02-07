@@ -1,13 +1,13 @@
 component displayName="Gimpy" hint="Process events from the event gateway" {
 	
-	THIS.GatewayID = 'Gimpy';
+	THIS.GatewayID = 'gimpy';
 	THIS.Version = '0.1';
 	setupchecks();
 
 	function onIncomingMessage(required struct Event) output=false {
 		var BuddyID = arguments.Event.Data.Sender;
 		SessionChecks(BuddyID);
-
+		
 		if(Trim(arguments.Event.Data.Message) is not 'last') {
 			Session.Last = Trim(arguments.Event.Data.Message);
 		}
@@ -56,12 +56,12 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 						break;
 				}
 				case "hi":case "hello":case "sup":case "howdy": {
-					Result = createObject('component','commands.hello').execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
+					Result = createObject('component','gimpy.commands.hello').execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
 					break;
 				}
 				default: {
-					if( FileExists(ExpandPath('commands/' & command & '.cfc')) ) {
-						Result = createObject('component','commands.' & command).execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
+					if( FileExists(ExpandPath('/gimpy/commands/' & command & '.cfc')) ) {
+						Result = createObject('component','gimpy.commands.' & command).execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
 					} else {
 						Result.Response		= 'Message';
 						Result.BuddyID		= BuddyID;
@@ -71,7 +71,7 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 				}
 			};
 		} else {
-			Result = createObject('component','commands.register').execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
+			Result = createObject('component','gimpy.commands.register').execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
 		};
 
 		if( StructKeyExists(Result,'Response') and Result.Response contains 'Message' ) {
@@ -107,8 +107,12 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 
 	private void function Respond(required struct Response) {
 		if( Len(Arguments.Response.Message) GT 0 and Len(Arguments.Response.BuddyID) GT 0 ) {
+			/*
+			savecontent variable="d" { writedump(var=Response,top=3,format="text"); }
+			writelog(text=d, type="information", file="XMPPClientGateway");
+			*/
 			SendGatewayMessage(THIS.GatewayID,Arguments.Response);
-			createObject("java", "java.lang.Thread").sleep(javaCast("int", 500));
+			sleep(100);
 		}
 	} 
 
@@ -176,9 +180,11 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 				};
 			}
 		}
+		/*
 		if( (getGatewayHelper(THIS.GatewayID).numberOfMessagesReceived() MOD 20) EQ 1) {
 			getServerScope().StatusManager.ChangeStatus();
 		}
+		*/
 	}
 
 	private boolean function isRegisteredUser(required string BuddyID) {

@@ -1,4 +1,22 @@
-<cfdump var="#Application#">
+<cfscript>
+	
+	
+	
+	
+	
+	
+/*
+writedump( server.CFXMPPCLIENT._Login() );
+writedump( server.CFXMPPCLIENT._GETBUDDIES() );
+writedump(server[server.connectionhash].pc.getConfig());
+*/
+writedump(server.CFXMPPCLIENT.getConnection());
+
+
+writedump(Application);
+writedump(server);
+</cfscript>
+
 
 <!---
 <cfdump var="#Application#">

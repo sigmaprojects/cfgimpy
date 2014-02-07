@@ -4,7 +4,7 @@
 	THIS.ApplicationTimeout = CreateTimeSpan( 1, 0, 0, 0 );
 	THIS.SessionManagement = true;
 	THIS.SetClientCookies = true;
-	THIS.SessionTimeout = CreateTimeSpan(0,1,0,0);
+	THIS.SessionTimeout = CreateTimeSpan(0,0,0,0);
 
 	if(structKeyExists(URL,'fwreinit')) { THIS.ApplicationTimeout = CreateTimeSpan(0,0,0,0); };
 	if(structKeyExists(url,'ormreload')) { ORMReload();}
@@ -25,11 +25,11 @@
 		eventHandler = "model.ORMEventHandler",
 		cfclocation="/model"
 	};
-	this.ormsettings.secondarycacheenabled = true;
+	//this.ormsettings.secondarycacheenabled = true;
 
 	public boolean function OnApplicationStart() {
 		StructClear( APPLICATION );
-		return;
+		return true;
 	}
 	
 	public boolean function OnRequestStart(Required String Page) {

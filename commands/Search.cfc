@@ -16,8 +16,8 @@
 		var area = ListGetAt(Arguments.CommandArgs,1,Delimiters);
 		if( Len(arguments.bot.getBotMemory().getTerm('search',area)) ) {
 			arguments.Bot.say(arguments.BuddyID, 'ok try ask around, wait plz...' );
-			var url = arguments.bot.getBotMemory().getTerm('search',area);
-			var query = CompileQuery(url);
+			var termURL = arguments.bot.getBotMemory().getTerm('search',area);
+			var query = CompileQuery(termURL);
 			var searchResults = SearchQuery( listRest(Arguments.CommandArgs, Delimiters), query );
 			
 			if( searchResults.RecordCount LTE 10 and searchResults.RecordCount GT 0) {
@@ -37,10 +37,10 @@
 		return Result;
 	}
 
-	private query function CompileQuery(required string url) {
+	private query function CompileQuery(required string termURL) {
 		var httpService = new http();
 			httpService.setMethod("get");
-			httpService.setUrl( arguments.url );
+			httpService.setUrl( arguments.termURL );
 		var result = httpService.send().getPrefix();
 		var fc = result.filecontent;
 			fc = hrefsToList(fc,'|');

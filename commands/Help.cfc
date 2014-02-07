@@ -28,13 +28,13 @@
 			</cfloop>
 			
 			
-			<cfdirectory action="list" directory="#expandPath('commands')#" filter="*.cfc" name="commands" />
+			<cfdirectory action="list" directory="#expandPath('/gimpy/commands')#" filter="*.cfc" name="commands" />
 			
 			<cfloop query="commands">
 				<cfset cmdName = left(commands.name,len(commands.name)-4) />
 				<cfset showHelp = true />
 				<cftry>
-					<cfset obj = createObject("component","commands.#cmdName#") />
+					<cfset obj = createObject("component","gimpy.commands.#cmdName#") />
 					<cfif structKeyExists(getMetadata(obj),"hidden") and getMetadata(obj).hidden and
 							arguments.commandArgs is not "hidden">
 						<cfset showHelp = false />
