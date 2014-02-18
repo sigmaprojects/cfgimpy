@@ -1,22 +1,19 @@
 ﻿component output=false {
 
-	public StatusManager function init(required string GatewayID) {
-		/*
-		variables.helper = getGatewayHelper(Arguments.GatewayID);
+	public StatusManager function init(required Any Gateway) {
+		variables.gateway = arguments.gateway;
 		variables.quotes = GetGirQuotes();
-		*/
 		return This;
 	}
-	public string function GetHelper() {
-		return variables.helper;
+	public any function getGateway() {
+		return variables.gateway;
 	}
 
 	public void function ChangeStatus(numeric quote) {
-		return;
 		if(StructKeyExists(arguments,'quote') && IsNumeric(arguments.quote)) {
-			GetHelper().setStatus('ONLINE', variables.quotes[arguments.quote] );
+			getGateway().setStatus('Available', variables.quotes[arguments.quote] );
 		} else {
-			GetHelper().setStatus('ONLINE', variables.quotes[RandRange(1,ArrayLen(variables.quotes))] );
+			getGateway().setStatus('Available', variables.quotes[RandRange(1,ArrayLen(variables.quotes))] );
 		}
 	}
 

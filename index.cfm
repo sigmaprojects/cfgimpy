@@ -9,12 +9,14 @@
 writedump( server.CFXMPPCLIENT._Login() );
 writedump( server.CFXMPPCLIENT._GETBUDDIES() );
 writedump(server[server.connectionhash].pc.getConfig());
-*/
+
 writedump(server.CFXMPPCLIENT.getConnection());
-
-
+*/
+/*
 writedump(Application);
 writedump(server);
+*/
+writeoutput('Ello');
 </cfscript>
 
 

@@ -2,9 +2,27 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 	
 	THIS.GatewayID = 'gimpy';
 	THIS.Version = '0.1';
-	setupchecks();
+	
+	
+	public void function setGateway(Required Gateway) {
+		application.XMPPClientGateway = arguments.Gateway;
+		setupchecks();
+	}
+	public any function getGateway() {
+		return application.XMPPClientGateway;
+	}
+	
+	public void function addNumberOfMessagesReceived() {
+		application.numberOfMessagesReceived++;
+	}
+	public numeric function getNumberOfMessagesReceived() {
+		return application.numberOfMessagesReceived;
+	}
 
 	function onIncomingMessage(required struct Event) output=false {
+		setupchecks();
+		
+		addNumberOfMessagesReceived();
 		var BuddyID = arguments.Event.Data.Sender;
 		SessionChecks(BuddyID);
 		
@@ -55,7 +73,7 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 						Result.Message		= 'okie dokie!';
 						break;
 				}
-				case "hi":case "hello":case "sup":case "howdy": {
+				case "hi":case "hello":case "sup":case "howdy":case "hey": {
 					Result = createObject('component','gimpy.commands.hello').execute(bot=THIS,Event=arguments.Event,BuddyID=arguments.Event.Data.Sender,commandArgs=CommandArgs);
 					break;
 				}
@@ -172,19 +190,30 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 	}
 
 	private void function setupchecks(boolean debug=false) {
+		/*
 		if(!StructKeyExists(server,'Gimpy') or arguments.debug) {
 			lock scope="Server" type="exclusive" timeout="30" {
 				Server.Gimpy = {
 					GimpyMemory 	= New GimpyMemory(),
-					StatusManager	= New StatusManager(THIS.GatewayID)
+					StatusManager	= New StatusManager( getGateway() )
 				};
 			}
 		}
-		/*
-		if( (getGatewayHelper(THIS.GatewayID).numberOfMessagesReceived() MOD 20) EQ 1) {
-			getServerScope().StatusManager.ChangeStatus();
-		}
 		*/
+		if( !structKeyExists(application,'numberOfMessagesReceived') ) {
+			application.numberOfMessagesReceived=0;
+		}
+		if( !structKeyExists(application,'GimpyMemory') ) {
+			application.GimpyMemory 	= New GimpyMemory();
+		}
+		if( !structKeyExists(application,'StatusManager') ) {
+			application.StatusManager	= New StatusManager( getGateway() );
+		}
+		
+		if( getNumberOfMessagesReceived() MOD 10 EQ 0) {
+			getStatusManager().ChangeStatus();
+		}
+		
 	}
 
 	private boolean function isRegisteredUser(required string BuddyID) {
@@ -197,21 +226,20 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 	public function getTerm(required string Key, required string Term) {
 		return getBotMemory().GetTerm(arguments.Key, arguments.Term);
 	}
-	public function getBotMemory() {
-		return getServerScope().GimpyMemory;
+	public any function getBotMemory() {
+		return application.GimpyMemory;
+	}
+	public any function getStatusManager() {
+		return application.StatusManager;
 	}
 
+	/*
 	private any function getServerScope() {
 		lock scope="Server" type="readonly" timeout="30" {
 			return Server.Gimpy;
 		}  
 	}
-
-
-
-
-
-
+	*/
 
 
 

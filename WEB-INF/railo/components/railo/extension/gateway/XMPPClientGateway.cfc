@@ -3,10 +3,10 @@ component {
     variables.state="stopped";
 
     public void function init(String id, Struct config, Any listener){
-    	variables.id = id;
-        variables.config = config;
-        variables.listener = listener;
-        
+    	variables.id = arguments.id;
+        variables.config = arguments.config;
+        variables.listener = arguments.listener;
+        variables.listener.setGateway( this );
 		if(variables.config.verbose){
         	writelog(text="XMPP Client Gateway [#arguments.id#] initialized", type="information", file="XMPPClientGateway");
         }
@@ -128,6 +128,23 @@ component {
 		var Packet = createObject('java','org.jivesoftware.smack.packet.Message').init( arguments.data.buddyid );
 		Packet.setBody( arguments.data.message );
 		variables.connection.sendPacket( Packet );
+	}
+	
+	public void function setStatus(Required String Mode='available', Required String Status, String Type='available') {
+		var validMods = 'chat,available,away,xa,dnd';
+		if( !listContainsNoCase(validMods,arguments.Mode) ) {return;}
+		
+		var PresenceMode = createObject('java','org.jivesoftware.smack.packet.Presence$Mode')[arguments.Mode];
+
+		var PresenceType = createObject('java','org.jivesoftware.smack.packet.Presence$Type')[arguments.Type];
+	
+		var Presence = createObject('java','org.jivesoftware.smack.packet.Presence').init(
+			PresenceType,
+			trim(arguments.Status),
+			50,
+			PresenceMode
+		);
+		variables.connection.sendPacket(Presence);
 	}
 
 }

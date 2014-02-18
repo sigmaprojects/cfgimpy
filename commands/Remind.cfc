@@ -27,7 +27,7 @@
 				if( ArrayLen(arrCmdArgs) LT 1 or !IsDate(arrCmdArgs[1]) ) {
 					Arguments.Bot.Say(Arguments.BuddyID, 'wut day u want me to remind you?  (mm-dd-yy)');
 					Session.tries++;
-				} else if( IsDate(arrCmdArgs[1]) && arrCmdArgs[1] LT DateFormat(Now(),'mm/dd/yy') ) {
+				} else if( IsDate(arrCmdArgs[1]) && arrCmdArgs[1] LT Now() ) {
 					Arguments.Bot.Say(Arguments.BuddyID, 'i dun have flux capacitor =/');
 					Arguments.Bot.Say(Arguments.BuddyID, 'wut day u want me to remind you?  (mm-dd-yy)');
 					//1.21 Jigawatts

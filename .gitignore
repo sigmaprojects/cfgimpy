@@ -8,7 +8,7 @@ WEB-INF/
 !WEB-INF/railo/lib/smackx-3.4.0.jar
 
 
-# memory & snapshots
+# memory & snapshots
 snapshots/**
 GimpyMemory.json
 
