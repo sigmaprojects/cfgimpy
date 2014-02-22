@@ -30,7 +30,7 @@ component {
 		
 		variables.state = "starting";
 
-		variables.jXMPPConfig = createObject('java','org.jivesoftware.smack.ConnectionConfiguration').init( variables.config.host, variables.config.serverport, 'gmail.com' );
+		variables.jXMPPConfig = createObject('java','org.jivesoftware.smack.ConnectionConfiguration').init( variables.config.host, variables.config.serverport, 'Talk' );
 		variables.jXMPPConfig.setSASLAuthenticationEnabled( true );
 
 		variables.connection = createObject('java','org.jivesoftware.smack.XMPPConnection').init( variables.jXMPPConfig );
@@ -127,24 +127,32 @@ component {
 	public void function SendMessage(Struct data) {
 		var Packet = createObject('java','org.jivesoftware.smack.packet.Message').init( arguments.data.buddyid );
 		Packet.setBody( arguments.data.message );
-		variables.connection.sendPacket( Packet );
+		try {
+			variables.connection.sendPacket( Packet );
+		} catch(Any e) {
+			writelog(text="#e.message#", type="fatal", file="XMPPClientGateway");
+		}
 	}
 	
 	public void function setStatus(Required String Mode='available', Required String Status, String Type='available') {
+		if( !variables.state eq 'running' ) { return; }
 		var validMods = 'chat,available,away,xa,dnd';
 		if( !listContainsNoCase(validMods,arguments.Mode) ) {return;}
-		
-		var PresenceMode = createObject('java','org.jivesoftware.smack.packet.Presence$Mode')[arguments.Mode];
+		try {
+			var PresenceMode = createObject('java','org.jivesoftware.smack.packet.Presence$Mode')[arguments.Mode];
 
-		var PresenceType = createObject('java','org.jivesoftware.smack.packet.Presence$Type')[arguments.Type];
+			var PresenceType = createObject('java','org.jivesoftware.smack.packet.Presence$Type')[arguments.Type];
 	
-		var Presence = createObject('java','org.jivesoftware.smack.packet.Presence').init(
-			PresenceType,
-			trim(arguments.Status),
-			50,
-			PresenceMode
-		);
-		variables.connection.sendPacket(Presence);
+			var Presence = createObject('java','org.jivesoftware.smack.packet.Presence').init(
+				PresenceType,
+				trim(arguments.Status),
+				50,
+				PresenceMode
+			);
+			variables.connection.sendPacket(Presence);
+		} catch(any e) {
+			writelog(text="#e.message#", type="fatal", file="XMPPClientGateway");
+		}
 	}
 
 }

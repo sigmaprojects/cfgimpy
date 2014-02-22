@@ -97,7 +97,7 @@
 				operation="HTTPRequest" 
 				url="http://gimpy.sigmaprojects.org/commands/remind.cfc?method=Remind&RemindID=#Arguments.RemindID#" 
 				startDate="#DateFormat(Arguments.RemindDate,'mm/dd/yyyy')#" 
-				startTime="#Arguments.RemindTime#"
+				startTime="#TimeFormat(Arguments.RemindTime,'medium')#"
 				interval="once" 
 				requestTimeOut="600" />
 	</cffunction> 
@@ -105,7 +105,7 @@
 	<cffunction name="Remind" access="remote" output="false" returnType="string" returnFormat="json">
 		<cfargument name="RemindID" type="string" required="true" />
 		<cfscript>
-			var GimpyMemory = Server.Gimpy.GimpyMemory;
+			var GimpyMemory = Application.GimpyMemory;
 			var Reminder = GimpyMemory.GetTerm('Reminders',Arguments.RemindID); 
 			
 			var Response = {

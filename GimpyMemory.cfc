@@ -50,7 +50,7 @@
 
 	public void function Snapshot() {
 		var json = getKeys( true );
-		FileWrite(ExpandPath('./snapshots/GimpyMemory_#DateFormat(now(),'mm-dd-yy')#_#TimeFormat(now(),'hh-m-s')#.json'),json);
+		FileWrite(ExpandPath('/snapshots/GimpyMemory_#DateFormat(now(),'mm-dd-yy')#_#TimeFormat(now(),'hh-m-s')#.json'),json);
 	}
 
 
@@ -89,18 +89,25 @@
 	}
 
 	private void function SaveKeys() {
-		var json = SerializeJSON( variables.keys );
-		FileWrite(ExpandPath('GimpyMemory.json'),json);
+		//var json = SerializeJSON( variables.keys );
+		//FileWrite(ExpandPath('/GimpyMemory.json'),json);
+		cachePut('Gimpy',variables.keys);
 	}
 	private void function LoadKeys() {
+		if( !cacheKeyExists('Gimpy') ) {
+			cachePut('Gimpy',{});
+		}
+		variables.keys = cacheGet('Gimpy'); 
+		/*
 		try{
 			var json = FileRead(ExpandPath('GimpyMemory.json'));
 			variables.keys = DeSerializeJSON(json);
 		} catch(any error) {
-			FileWrite(ExpandPath('GimpyMemory.json'),'{}');
+			FileWrite(ExpandPath('/GimpyMemory.json'),'{}');
 		}
-		var json = FileRead(ExpandPath('GimpyMemory.json'));
+		var json = FileRead(ExpandPath('/GimpyMemory.json'));
 		variables.keys = DeSerializeJSON(json);
+		*/
 	}
 
 }

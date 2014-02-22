@@ -5,8 +5,8 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 	
 	
 	public void function setGateway(Required Gateway) {
-		application.XMPPClientGateway = arguments.Gateway;
-		setupchecks();
+		//application.XMPPClientGateway = arguments.Gateway;
+		setupchecks(arguments.Gateway);
 	}
 	public any function getGateway() {
 		return application.XMPPClientGateway;
@@ -20,7 +20,7 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 	}
 
 	function onIncomingMessage(required struct Event) output=false {
-		setupchecks();
+		setupchecks(arguments.Event.Gateway);
 		
 		addNumberOfMessagesReceived();
 		var BuddyID = arguments.Event.Data.Sender;
@@ -189,7 +189,7 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 		say(arguments.BuddyID,greeting & ", " & getBotMemory().GetTerm(arguments.BuddyID,'name'));
 	}
 
-	private void function setupchecks(boolean debug=false) {
+	private void function setupchecks(Gateway, boolean debug=false) {
 		/*
 		if(!StructKeyExists(server,'Gimpy') or arguments.debug) {
 			lock scope="Server" type="exclusive" timeout="30" {
@@ -200,6 +200,11 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 			}
 		}
 		*/
+		if( structKeyExists(arguments,'Gateway') ) {
+			lock scope="Application" timeout="30" type="exclusive" {
+				application.XMPPClientGateway = arguments.Gateway;
+			}  
+		}
 		if( !structKeyExists(application,'numberOfMessagesReceived') ) {
 			application.numberOfMessagesReceived=0;
 		}

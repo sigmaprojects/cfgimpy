@@ -20,14 +20,14 @@
 			var query = CompileQuery(termURL);
 			var searchResults = SearchQuery( listRest(Arguments.CommandArgs, Delimiters), query );
 			
-			if( searchResults.RecordCount LTE 10 and searchResults.RecordCount GT 0) {
+			if( searchResults.RecordCount LTE 15 and searchResults.RecordCount GT 0) {
 				arguments.Bot.say(arguments.BuddyID, 'i found stuffs! =D' );
 				for(var i=1; i LTE searchResults.RecordCount;i++) {
 					arguments.Bot.say(arguments.BuddyID, searchResults['name'][i] );
 				}
 				Result.Message = "";
 			}
-			if( searchResults.RecordCount GT 10 ) {
+			if( searchResults.RecordCount GT 15 ) {
 				Result.Message = "i found too much stuffs and made a dookie =$";
 			}
 			

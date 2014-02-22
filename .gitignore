@@ -15,6 +15,7 @@ GimpyMemory.json
 # eclipse settings
 .settings/
 .project
+settings.xml
 
 # personal stuffs
 commands/Torrent.cfc

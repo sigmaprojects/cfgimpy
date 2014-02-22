@@ -4,7 +4,7 @@
 	THIS.ApplicationTimeout = CreateTimeSpan( 1, 0, 0, 0 );
 	THIS.SessionManagement = true;
 	THIS.SetClientCookies = true;
-	THIS.SessionTimeout = CreateTimeSpan(0,0,0,0);
+	THIS.SessionTimeout = CreateTimeSpan(0,0,0,30);
 
 	if(structKeyExists(URL,'fwreinit')) { THIS.ApplicationTimeout = CreateTimeSpan(0,0,0,0); };
 	if(structKeyExists(url,'ormreload')) { ORMReload();}
