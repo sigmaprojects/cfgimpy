@@ -6,10 +6,7 @@
 	THIS.SetClientCookies = true;
 	THIS.SessionTimeout = CreateTimeSpan(0,0,0,30);
 
-	if(structKeyExists(URL,'fwreinit')) { THIS.ApplicationTimeout = CreateTimeSpan(0,0,0,0); };
-	if(structKeyExists(url,'ormreload')) { ORMReload();}
-
-	this.mappings["/cfgimpy"] = ExpandPath('./');
+	this.mappings["/cfgimpy"] = ExpandPath('/');
  
 	this.ormenabled = "true";
 	this.datasource = "cfgimpy";
@@ -28,7 +25,6 @@
 	//this.ormsettings.secondarycacheenabled = true;
 
 	public boolean function OnApplicationStart() {
-		StructClear( APPLICATION );
 		return true;
 	}
 	
@@ -47,6 +43,8 @@
 	}
 	
 	public void function OnSessionStart() {
+		if(structKeyExists(URL,'fwreinit')) { applicationStop(); };
+		if(structKeyExists(url,'ormreload')) { ORMReload();}
 		return;
 	}
 	

@@ -1,26 +1,19 @@
-﻿<cfcomponent hint="{message} - I greet you the next time I see you.">
+﻿component implements="ICommand"  hint="{message} - I greet you the next time I see you." {
 
-	<cffunction name="execute" returntype="struct" access="public" output="false">
-		<cfargument name="bot" type="any" required="true" />
-		<cfargument name="event" type="struct" required="true" />
-		<cfargument name="BuddyID" type="string" required="true" />
-		<cfargument name="CommandArgs" type="string" required="true" />
+	public struct function execute(required any Bot, required struct Event, required string BuddyID, required string CommandArgs) {
+		var result = structNew();
 
-		<cfset var result = structNew() />
-
-		<cfset result.response = "MESSAGE" />
-		<cfset result.BuddyID = arguments.BuddyID />
-		<cfset result.Message = '' />
+		result.response = "MESSAGE";
+		result.BuddyID = arguments.BuddyID;
+		result.Message = '';
 			
 
-		<cfset arguments.bot.getBotMemory().setTerm(BuddyID, "greeting", CommandArgs) />
-		<cfset Result.Response = 'Message' />
-		<cfset Result.BuddyID = BuddyID />
-		<cfset Result.Message = "I'll be sure to greet you next time you return!" />
+		arguments.bot.getBotMemory().setTerm(BuddyID, "greeting", CommandArgs);
+		Result.Response = 'Message';
+		Result.BuddyID = BuddyID;
+		Result.Message = "I'll be sure to greet you next time you return!";
 
 			
-		<cfreturn result />
-
-	</cffunction>
-
-</cfcomponent>
+		return result;
+	}
+}

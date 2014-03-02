@@ -96,6 +96,10 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 			Respond(result);
 		}
 	};
+	
+	private void function loadCommands() {
+		
+	}
 
 
 	function onAddBuddyRequest(required struct Event) output=false {
@@ -200,6 +204,9 @@ component displayName="Gimpy" hint="Process events from the event gateway" {
 			}
 		}
 		*/
+		lock scope="Application" timeout="30" type="exclusive" {
+			application.Gimpy = this;
+		}
 		if( structKeyExists(arguments,'Gateway') ) {
 			lock scope="Application" timeout="30" type="exclusive" {
 				application.XMPPClientGateway = arguments.Gateway;
