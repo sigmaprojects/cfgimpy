@@ -8,16 +8,30 @@
 		<cfscript>
 		var RemindID = CreateUUID();
 		var Result = {
-			Response		= 'Message',
+			Response	= 'Message',
 			BuddyID		= Arguments.BuddyID,
 			Message		= ''
 		};
-		var Delimiters = ",";
+		var Delimiters = " ";
 		var arrCmdArgs = ListToArray(Arguments.CommandArgs,Delimiters);
 		Session.Current = 'Remind';
 		if(!StructKeyExists(Session,'Remind')) {
 			Session.Remind = {};
 		}
+		//remind me in 2 day
+		if( arrayLen(arrCmdArgs) gte 4 ) {
+			if( arrCmdArgs[1] eq 'me' ) {
+
+				var NLDate = createObject("component","gimpy.commands.CF-NLDate.NLDate").init();
+				var dateObj = NLDate.parse( arrCmdArgs[2] & ' ' & arrCmdArgs[3] & ' ' & arrCmdArgs[4]);
+				Session.Remind.Date = dateFormat(dateObj,'mm/dd/yyyy');
+				Session.Remind.Time = timeFormat(dateObj,'medium');
+				Session.Remind.CurrentActionNeeded = 'details';
+				arrCmdArgs = arrayNew(1);
+			}
+			
+		}
+		
 		if(!StructKeyExists(Session.Remind,'CurrentActionNeeded')) {
 			Session.Remind.CurrentActionNeeded = 'date';
 		}
@@ -95,7 +109,7 @@
 			<cfschedule action="update" 
 				task="Gimy_Reminder_#Arguments.RemindID#"  
 				operation="HTTPRequest" 
-				url="http://gimpy.sigmaprojects.org/commands/remind.cfc?method=Remind&RemindID=#Arguments.RemindID#" 
+				url="http://gimpy.sigmaprojects.org/commands/remind.cfc?method=Remind&RemindID=#Arguments.RemindID#"
 				startDate="#DateFormat(Arguments.RemindDate,'mm/dd/yyyy')#" 
 				startTime="#TimeFormat(Arguments.RemindTime,'medium')#"
 				interval="once" 
