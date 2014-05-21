@@ -82,7 +82,7 @@
 							Application.ReminderService.createReminder(argumentCollection=RemindDetails);
 							Arguments.Bot.Say(Arguments.BuddyID, 'k, ill remind u!');
 						} catch(any e) {
-							Arguments.Bot.Say(Arguments.BuddyID, 'kaboooom! whoopsie err');
+							Arguments.Bot.Say(Arguments.BuddyID, 'kaboooom! whoopsie ');
 						}
 					} 
 					StructDelete(Session,'Remind');
