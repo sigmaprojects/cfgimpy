@@ -7,6 +7,7 @@
 */
 	
 	public GimpyMemory function init() {
+		//variables.cacheName = 'Gimpy-EH';
 		variables.Keys = {};
 		LoadKeys();
 		return This;

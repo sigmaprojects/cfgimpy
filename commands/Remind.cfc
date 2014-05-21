@@ -18,7 +18,7 @@
 		if(!StructKeyExists(Session,'Remind')) {
 			Session.Remind = {};
 		}
-		//remind me in 2 day
+		
 		if( arrayLen(arrCmdArgs) gte 4 ) {
 			if( arrCmdArgs[1] eq 'me' ) {
 
@@ -70,23 +70,21 @@
 					Session.tries++;
 				} else {
 					Session.Remind.Details = Arguments.CommandArgs;
-					Arguments.Bot.Say(Arguments.BuddyID, 'k, ill remind u!');
+					
 					var RemindDetails = {
 						Message	= Session.Remind.Details,
 						BuddyID	= Arguments.BuddyID,
 						Date	= Session.Remind.Date,
 						Time	= Session.Remind.Time
 					};
-					Arguments.bot.getBotMemory().SetTerm(
-						'Reminders',
-						RemindID,
-						RemindDetails
-					);
-					CreateReminder(
-						Session.Remind.Date,
-						Session.Remind.Time,
-						RemindID
-					);
+					lock scope="Application" type="exclusive" throwontimeout="false" timeout="60" {
+						try {
+							Application.ReminderService.createReminder(argumentCollection=RemindDetails);
+							Arguments.Bot.Say(Arguments.BuddyID, 'k, ill remind u!');
+						} catch(any e) {
+							Arguments.Bot.Say(Arguments.BuddyID, 'kaboooom! whoopsie err');
+						}
+					} 
 					StructDelete(Session,'Remind');
 					Session.Current = '';
 				}
@@ -102,35 +100,21 @@
 		<cfreturn Result /> 
 	</cffunction>
 
-	<cffunction name="CreateReminder" access="private" output="false" returnType="void">
-		<cfargument name="RemindDate" type="string" required="true" />
-		<cfargument name="RemindTime" type="string" required="true" />
-		<cfargument name="RemindID" type="string" required="true" /> 
-			<cfschedule action="update" 
-				task="Gimy_Reminder_#Arguments.RemindID#"  
-				operation="HTTPRequest" 
-				url="http://gimpy.sigmaprojects.org/commands/remind.cfc?method=Remind&RemindID=#Arguments.RemindID#"
-				startDate="#DateFormat(Arguments.RemindDate,'mm/dd/yyyy')#" 
-				startTime="#TimeFormat(Arguments.RemindTime,'medium')#"
-				interval="once" 
-				requestTimeOut="600" />
-	</cffunction> 
 
 	<cffunction name="Remind" access="remote" output="false" returnType="string" returnFormat="json">
-		<cfargument name="RemindID" type="string" required="true" />
 		<cfscript>
-			var GimpyMemory = Application.GimpyMemory;
-			var Reminder = GimpyMemory.GetTerm('Reminders',Arguments.RemindID); 
-			
-			var Response = {
-				Response	= 'Message',
-				BuddyID		= Reminder.BuddyID,
-				Message		= Reminder.Message
-			};
-			SendGatewayMessage('Gimpy',Response);
-			GimpyMemory.RemoveTerm('Reminders',Arguments.RemindID);
+			lock scope="Application" type="exclusive" throwontimeout="false" timeout="60" {
+				var Reminders = Application.ReminderService.getReadyMessages();
+				for(var Reminder in Reminders) {
+					Reminder.setTryCount( Reminder.getTryCount()+1 );
+					try {
+						SendGatewayMessage('Gimpy',Reminder.toJSON());
+						Reminder.setSent(1);
+					} catch(any e) {}
+				}
+				Application.ReminderService.save(Reminders,false,true);
+			}
 		</cfscript>
-		<cfschedule action="delete" task="Gimy_Reminder_#Arguments.RemindID#" />
 		<cfreturn "i done did it!" /> 
 	</cffunction> 
 
