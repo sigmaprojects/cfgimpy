@@ -30,10 +30,14 @@ component {
 		
 		variables.state = "starting";
 
-		variables.jXMPPConfig = createObject('java','org.jivesoftware.smack.ConnectionConfiguration').init( variables.config.host, variables.config.serverport, 'Talk' );
-		variables.jXMPPConfig.setSASLAuthenticationEnabled( true );
+		variables.jXMPPConfig = createObject('java','org.jivesoftware.smack.ConnectionConfiguration').init( 'talk.google.com', '5222', 'Talk' );
+		var securityMode = createObject('java','org.jivesoftware.smack.ConnectionConfiguration$SecurityMode')['ENABLED'];
+		var sc = createObject('java','javax.net.ssl.SSLContext').getInstance("TLS");
+		sc.init(javaCast('null',''), javaCast('null',''), createObject('java','java.security.SecureRandom').init() );
+		jXMPPConfig.setCustomSSLContext(sc);
+		jXMPPConfig.setSecurityMode( securityMode );
 
-		variables.connection = createObject('java','org.jivesoftware.smack.XMPPConnection').init( variables.jXMPPConfig );
+		variables.connection = createObject('java','org.jivesoftware.smack.tcp.XMPPTCPConnection').init( variables.jXMPPConfig );
 
 		variables.connection.connect();
 		// gotta wait a second sometimes.

@@ -7,6 +7,7 @@
 	THIS.SessionTimeout = CreateTimeSpan(0,0,0,30);
 
 	this.mappings["/cfgimpy"] = ExpandPath('/');
+	this.mappings["/gimpy"] = ExpandPath('/');
  
 	this.ormenabled = "true";
 	this.datasource = "cfgimpy";
@@ -25,6 +26,7 @@
 	//this.ormsettings.secondarycacheenabled = true;
 
 	public boolean function OnApplicationStart() {
+		Application.bugLogService = CreateObject('component','buglog.client.bugLogService').init('https://buglog.sigmaprojects.org/listeners/bugLogListenerREST.cfm');
 		Application.ReminderService = new model.Reminder.ReminderService(
 			entityName	= 'Reminder',
 			scheduleUrl	= 'https://gimpy.sigmaprojects.org/commands/remind.cfc?method=Remind'
@@ -38,6 +40,18 @@
 		if(structKeyExists(url,'ormreload')) { ORMReload();}
 		return true;
 	}
+
+
+	public void function onError(
+		Required	Any		Exception,
+		Required	String	EventName
+	) {
+		if( !StructKeyExists(Application,'bugLogService') ) {
+			Application.bugLogService = CreateObject('component','buglog.client.bugLogService').init('https://buglog.sigmaprojects.org/listeners/bugLogListenerREST.cfm');
+		}
+		Application.bugLogService.notifyService(ARGUMENTS.EventName, ARGUMENTS.Exception, "", "ERROR");
+	}
+
 
 	/*
 	public void function OnRequest(Required String Page) {

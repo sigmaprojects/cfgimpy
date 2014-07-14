@@ -1,4 +1,23 @@
 <cfscript>
+
+jXMPPConfig = createObject('java','org.jivesoftware.smack.ConnectionConfiguration').init( 'talk.google.com', '5222', 'Talk' );
+securityMode = createObject('java','org.jivesoftware.smack.ConnectionConfiguration$SecurityMode')['ENABLED'];
+sc = createObject('java','javax.net.ssl.SSLContext').getInstance("TLS");
+sc.init(javaCast('null',''), javaCast('null',''), createObject('java','java.security.SecureRandom').init() );
+jXMPPConfig.setCustomSSLContext(sc);
+jXMPPConfig.setSecurityMode( securityMode );
+
+connection = createObject('java','org.jivesoftware.smack.tcp.XMPPTCPConnection').init( jXMPPConfig );
+//connection = createObject('java','org.jivesoftware.smack.XMPPConnection').init( jXMPPConfig );
+//connection = createObject('java','org.jivesoftware.smack.tcp.XMPPTCPConnection').init("talk.gmail.com");
+
+writedump(connection);
+
+connection.connect();
+
+writedump(connection);
+
+abort;
 	writedump(application);
 	abort;
 	Commands = DirectoryList(expandPath('/commands'));
