@@ -1,4 +1,4 @@
-# private gateway instance config
+# private gateway instance config
 *.cfg
 WEB-INF/
 !WEB-INF/railo/components/railo/extension/gateway/XMPPClientGateway.cfc

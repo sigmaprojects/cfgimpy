@@ -57,12 +57,12 @@ component {
         var collector = variables.connection.createPacketCollector(PacketTypeFilter);
 
         while( variables.state eq 'running' ) {
-
+			
 			try {
 			
 	            var packet = collector.nextResult();
             	
-            	if( len(trim(packet.getBody())) gt 0 ) {
+            	if( !IsNull(packet) && len(trim(packet.getBody())) gt 0 ) {
             		
             		if(variables.config.verbose){
 	            		writelog(text="Message From: #packet.getFrom()#.  Body: #packet.getBody()#", type="information", file="XMPPClientGateway");
@@ -130,7 +130,7 @@ component {
 
 	public void function SendMessage(Struct data) {
 		var Packet = createObject('java','org.jivesoftware.smack.packet.Message').init( arguments.data.buddyid );
-		Packet.setBody( arguments.data.message );
+		Packet.setBody( replaceNoCase(arguments.data.message,'&nbsp;',' ','all') );
 		try {
 			variables.connection.sendPacket( Packet );
 		} catch(Any e) {

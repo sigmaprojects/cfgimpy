@@ -1,0 +1,1614 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>DebuggerService</title>
+	<meta name="keywords" content="cbdebugger.concurrent.Callable interface">
+	<!-- common assets -->
+	
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel ="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
+<link rel ="stylesheet" type="text/css" href="../stylesheet.css">
+	
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,700,700italic|Ubuntu+Mono' rel='stylesheet' type='text/css' />
+	
+<script src="../bootstrap/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+<script>
+$(document).ready(function() {
+	// Global Tool Tip Settings
+	$( '[title]' ).tooltip({
+		 animation: 'slide',
+		 delay: { show: 250, hide: 250 }
+	});
+});
+</script>
+	<!-- syntax highlighter -->
+	<link type="text/css" rel="stylesheet" href="../highlighter/styles/shCoreDefault.css">
+	<script src="../highlighter/scripts/shCore.js"></script>
+	<script src="../highlighter/scripts/shBrushColdFusion.js"></script>
+	<script src="../highlighter/scripts/shBrushXml.js"></script>
+	<script src="../highlighter/scripts/shBrushSql.js"></script>
+	<script src="../highlighter/scripts/shBrushJScript.js"></script>
+	<script src="../highlighter/scripts/shBrushJava.js"></script>
+	<script src="../highlighter/scripts/shBrushCss.js"></script>
+	<script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body class="withNavbar">
+
+
+
+
+
+
+<!-- ========= START OF NAVBAR ======= -->
+<a name="navbar_top"></a>
+<a href="#skip-navbar_top" title="skip navigation links"></a>	
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+    
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#class-navigation">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><strong>CBDebugger v1.0.0</strong></a>
+		</div>
+
+	    <div class="collapse navbar-collapse" id="class-navigation">
+	    	<ul class="nav navbar-nav">
+				
+					
+					<li><a href="../overview-summary.html"><i class="glyphicon glyphicon-plane"></i> overview</a></li>
+					
+				
+
+				
+					<li><a href="package-summary.html"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;package</a></li>
+				
+
+			  	
+					<li class="dropdown active">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-file"></i> class <b class="caret"></b></a>
+
+						<ul class="dropdown-menu">
+							<li><a href="#class">Class Definition</a></li>
+							<li><a href="#constructor_summary">Constructor Summary</a></li>
+							<li><a href="#constructor_detail">Constructor Detail</a></li>
+							<li><a href="#inherited_methods">Inherited Methods</a></li>
+							<li><a href="#method_summary">Method Summary</a></li>
+							<li><a href="#method_detail">Method Detail</a></li>
+							<li><a href="#property_summary">Property Summary</a></li>
+							<li><a href="#property_detail">Property Detail</a></li>
+							
+						</ul>
+					</li>
+				
+	      	</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="../index.html?cbdebugger/DebuggerService.html" target="_top">
+					<i class="glyphicon glyphicon-fullscreen"></i> Frames
+					</a>
+				</li>
+			</ul>
+	    </div>
+
+	</div>
+</nav>	
+
+<a name="skip-navbar_top"></a>
+<!-- ========= END OF NAVBAR ========= -->
+
+<!-- ======== start of class data ======== -->
+<a name="class"><!-- --></a>
+
+<!-- Package -->
+<div class="pull-right">
+	<a href="package-summary.html" title="Package: cbdebugger"><span class="label label-success">cbdebugger</span></a>
+</div>
+
+<h2>
+
+Class
+
+ DebuggerService</h2>
+
+
+
+
+
+
+
+
+	
+		
+	
+	
+
+	
+		
+		
+			
+		
+	
+	
+
+	
+		
+		
+			
+		
+	
+	
+
+
+<!-- Inheritance Tree-->
+<pre>railo-context.Component
+        <img src="../resources/inherit.gif" alt="extended by ">coldbox.system.web.services.BaseService
+            <img src="../resources/inherit.gif" alt="extended by ">cbdebugger.DebuggerService
+</pre>
+
+<div class="panel panel-default">
+	<div class="panel-heading"><strong>Class Attributes:</strong></div>
+		<div class="panel-body">
+		
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				singleton 
+				
+			</li>
+			&nbsp;
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				output 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				synchronized 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				accessors 
+				
+				: true		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+			
+			<li class="label label-danger label-annotations">
+				persistent 
+				
+				: false		
+				
+			</li>
+			&nbsp;
+			
+		
+			
+		
+			
+		
+		
+	</div>
+</div>
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+
+	<a name="constructor_summary"><!-- --></a>
+	<table class="table table-bordered table-hover">
+		<tr class="info">
+			<th align="left" colspan="2">
+				<strong>Constructor Summary</strong>
+			</th>
+		</tr>
+		<tr>
+			
+			<td>
+				<strong><a href="DebuggerService.html#init()">init</A></strong>([any controller])
+				<br>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Constructor.
+				
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+
+<a name="method_summary"><!-- --></a>
+<table class="table table-bordered table-hover">
+	<tr class="info">
+		<th align="left" colspan="2">
+			<strong>Method Summary</strong>
+		</th>
+	</tr>
+
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getCookieName()">getCookieName</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get cookieName.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any&lt;Boolean&gt;</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getDebugMode()">getDebugMode</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I Get the current user's debugmode.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>string</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getInetHost()">getInetHost</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the hostname of the executing machine.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getProfilers()">getProfilers</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get Profilers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>private&nbsp;any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getSecretKey()">getSecretKey</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get secret key.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getTimers()">getTimers</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get the timers query from the request.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>array</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#getTracers()">getTracers</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Get Tracers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#isDebugCookieValid()">isDebugCookieValid</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checks if the debug cookie is a valid cookie.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#popProfiler()">popProfiler</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pop a profiler record.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#pushProfiler()">pushProfiler</A></strong>(query profilerRecord)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Push a profiler record.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#pushTracer()">pushTracer</A></strong>(string message, [any extraInfo=''])
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Push a new tracer.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#recordProfiler()">recordProfiler</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This method will try to push a profiler record.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#renderCachePanel()">renderCachePanel</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Renders the execution profilers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#renderDebugLog()">renderDebugLog</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return the debug log.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#renderProfiler()">renderProfiler</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Renders the execution profilers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#resetProfilers()">resetProfilers</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reset all profilers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#resetTracers()">resetTracers</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reset all Tracers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#rotateSecretKey()">rotateSecretKey</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I generate a secret key value for the cookie which enables debug mode.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#setCookieName()">setCookieName</A></strong>(string cookieName)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set cookieName.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#setDebugMode()">setDebugMode</A></strong>(boolean mode)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I set the current user's debugmode.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#setProfilers()">setProfilers</A></strong>(array Profilers)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set Profilers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>private&nbsp;void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#setSecretKey()">setSecretKey</A></strong>(string secretKey)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set secret key.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#setTracers()">setTracers</A></strong>(array Tracers)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Set Tracers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>void</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#timerEnd()">timerEnd</A></strong>(any labelHash='')
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;End an internal code timer.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#timersExist()">timersExist</A></strong>()
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do we have any request timers.
+			
+		</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="right" valign="top" width="1%">
+			<code>any</code>
+		</td>
+		<td>
+			<strong><a href="DebuggerService.html#timerStart()">timerStart</A></strong>(any label)
+			<br>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Start an internal code timer and get a hash of the timer storage.
+			
+		</td>
+	</tr>
+	
+</table>
+
+
+
+<a name="inherited_methods"><!-- --></a>
+
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_coldbox.system.web.services.BaseService"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd>coldbox.system.web.services.BaseService</kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+					
+					
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+					
+					
+					
+						
+					
+					
+					
+					
+				
+				
+				
+					<a href="..//coldbox/system/web/services/BaseService.html#getController()">getController</a>, <a href="..//coldbox/system/web/services/BaseService.html#getUtil()">getUtil</a>, <a href="..//coldbox/system/web/services/BaseService.html#onConfigurationLoad()">onConfigurationLoad</a>, <a href="..//coldbox/system/web/services/BaseService.html#onShutdown()">onShutdown</a>, <a href="..//coldbox/system/web/services/BaseService.html#setController()">setController</a>
+				
+			</td>
+		</tr>
+	</table>
+
+	
+
+	
+
+	&nbsp;
+	<a name="methods_inherited_from_class_railo-context.Component"><!-- --></a>
+	<table class="table table-hover table-bordered">
+		<tr class="info">
+			<th align="left">
+				<strong>Methods inherited from class <kbd>railo-context.Component</kbd></strong>
+			</th>
+		</tr>
+		<tr>
+			<td>
+				
+				
+				
+				
+				
+					<span class="label label-warning"><em>None</em></span>
+				
+			</td>
+		</tr>
+	</table>
+
+
+<hr>
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+
+	<a name="constructor_detail"><!-- --></a>
+	<table class="table table-bordered">
+		<tr class="info">
+			<th colspan="1" align="left">
+				<strong>Constructor Detail</strong>
+			</th>
+		</tr>
+	</table>
+
+	<a name="init()"><!-- --></a><h3>
+	init</h3>
+	<kbd>public <strong>init</strong>([any controller])</kbd>
+
+	<br><br>
+
+	
+	<p>Constructor</p>
+	
+
+	
+	<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+			<dd><code>controller</code></dd>
+		
+	</dl>
+	
+	<hr>
+
+
+<!-- ============ PROPERTY DETAIL ========== -->
+
+
+
+
+
+
+
+
+
+<!-- ============ METHOD DETAIL ========== -->
+
+<a name="method_detail"><!-- --></a>
+<table class="table table-bordered">
+	<tr class="info">
+		<th colspan="1" align="left">
+			<strong>Method Detail</strong>
+		</th>
+	</tr>
+</table>
+
+
+	
+	<a name="getCookieName()"><!-- --></a>
+	<h3>getCookieName</h3>
+	
+	<kbd>public any <strong>getCookieName</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Get cookieName</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getDebugMode()"><!-- --></a>
+	<h3>getDebugMode</h3>
+	
+	<kbd>public any&lt;Boolean&gt; <strong>getDebugMode</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>I Get the current user's debugmode. Boolean</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getInetHost()"><!-- --></a>
+	<h3>getInetHost</h3>
+	
+	<kbd>public string <strong>getInetHost</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Get the hostname of the executing machine.</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getProfilers()"><!-- --></a>
+	<h3>getProfilers</h3>
+	
+	<kbd>public array <strong>getProfilers</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Get Profilers</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getSecretKey()"><!-- --></a>
+	<h3>getSecretKey</h3>
+	
+	<kbd>private any <strong>getSecretKey</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Get secret key</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getTimers()"><!-- --></a>
+	<h3>getTimers</h3>
+	
+	<kbd>public any <strong>getTimers</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Get the timers query from the request. Empty query if it does not exist. Query</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="getTracers()"><!-- --></a>
+	<h3>getTracers</h3>
+	
+	<kbd>public array <strong>getTracers</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Get Tracers</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="isDebugCookieValid()"><!-- --></a>
+	<h3>isDebugCookieValid</h3>
+	
+	<kbd>public any <strong>isDebugCookieValid</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Checks if the debug cookie is a valid cookie. Boolean</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="popProfiler()"><!-- --></a>
+	<h3>popProfiler</h3>
+	
+	<kbd>public void <strong>popProfiler</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Pop a profiler record</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="pushProfiler()"><!-- --></a>
+	<h3>pushProfiler</h3>
+	
+	<kbd>public void <strong>pushProfiler</strong>(query profilerRecord)</kbd>
+	
+	<br><br>
+
+	
+		<p>Push a profiler record</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>profilerRecord</code> - The profiler query for this request</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="pushTracer()"><!-- --></a>
+	<h3>pushTracer</h3>
+	
+	<kbd>public void <strong>pushTracer</strong>(string message, [any extraInfo=''])</kbd>
+	
+	<br><br>
+
+	
+		<p>Push a new tracer</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>message</code> - Message to Send</dd>
+		
+		<dd><code>extraInfo</code> - Extra Information to dump on the trace</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="recordProfiler()"><!-- --></a>
+	<h3>recordProfiler</h3>
+	
+	<kbd>public void <strong>recordProfiler</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>This method will try to push a profiler record</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="renderCachePanel()"><!-- --></a>
+	<h3>renderCachePanel</h3>
+	
+	<kbd>public any <strong>renderCachePanel</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Renders the execution profilers.</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="renderDebugLog()"><!-- --></a>
+	<h3>renderDebugLog</h3>
+	
+	<kbd>public any <strong>renderDebugLog</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Return the debug log.</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="renderProfiler()"><!-- --></a>
+	<h3>renderProfiler</h3>
+	
+	<kbd>public any <strong>renderProfiler</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Renders the execution profilers.</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="resetProfilers()"><!-- --></a>
+	<h3>resetProfilers</h3>
+	
+	<kbd>public void <strong>resetProfilers</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Reset all profilers</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="resetTracers()"><!-- --></a>
+	<h3>resetTracers</h3>
+	
+	<kbd>public void <strong>resetTracers</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Reset all Tracers</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="rotateSecretKey()"><!-- --></a>
+	<h3>rotateSecretKey</h3>
+	
+	<kbd>public void <strong>rotateSecretKey</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>I generate a secret key value for the cookie which enables debug mode</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setCookieName()"><!-- --></a>
+	<h3>setCookieName</h3>
+	
+	<kbd>public void <strong>setCookieName</strong>(string cookieName)</kbd>
+	
+	<br><br>
+
+	
+		<p>Set cookieName</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>cookieName</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setDebugMode()"><!-- --></a>
+	<h3>setDebugMode</h3>
+	
+	<kbd>public void <strong>setDebugMode</strong>(boolean mode)</kbd>
+	
+	<br><br>
+
+	
+		<p>I set the current user's debugmode</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>mode</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setProfilers()"><!-- --></a>
+	<h3>setProfilers</h3>
+	
+	<kbd>public void <strong>setProfilers</strong>(array Profilers)</kbd>
+	
+	<br><br>
+
+	
+		<p>Set Profilers</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>Profilers</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setSecretKey()"><!-- --></a>
+	<h3>setSecretKey</h3>
+	
+	<kbd>private void <strong>setSecretKey</strong>(string secretKey)</kbd>
+	
+	<br><br>
+
+	
+		<p>Set secret key</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>secretKey</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="setTracers()"><!-- --></a>
+	<h3>setTracers</h3>
+	
+	<kbd>public void <strong>setTracers</strong>(array Tracers)</kbd>
+	
+	<br><br>
+
+	
+		<p>Set Tracers</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>Tracers</code></dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="timerEnd()"><!-- --></a>
+	<h3>timerEnd</h3>
+	
+	<kbd>public void <strong>timerEnd</strong>(any labelHash='')</kbd>
+	
+	<br><br>
+
+	
+		<p>End an internal code timer</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>labelHash</code> - The timer label hash to stop</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="timersExist()"><!-- --></a>
+	<h3>timersExist</h3>
+	
+	<kbd>public any <strong>timersExist</strong>()</kbd>
+	
+	<br><br>
+
+	
+		<p>Do we have any request timers. Boolean</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+
+	
+
+	</dl>
+	<hr>
+
+	
+	<a name="timerStart()"><!-- --></a>
+	<h3>timerStart</h3>
+	
+	<kbd>public any <strong>timerStart</strong>(any label)</kbd>
+	
+	<br><br>
+
+	
+		<p>Start an internal code timer and get a hash of the timer storage</p>
+	
+
+	
+		
+		
+	
+
+	
+	
+
+	
+		<dl>
+		<dt><strong>Parameters:</strong></dt>
+		
+		<dd><code>label</code> - The timer label to record</dd>
+		
+		</dl>
+	
+
+	
+
+	</dl>
+	<hr>
+
+
+
+
+</body>
+</html>
+
